@@ -1,47 +1,54 @@
-import styles from './SignUp.module.css'
+import styles from "./SignUp.module.css";
+import { useSignup } from "../../hooks/useSignup.js";
 
-
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 export default function SignUp() {
-  const [email,setEmail] =useState('')
-  const [password, setPassword] = useState('')
-  const [Name, setName] = useState('')
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [Name, setName] = useState("");
+  const { Signup, isPending, error } = useSignup();
 
-   const handleSubmit = (e) => {
-      e.preventDefault()
-      console.log( Name, email,password)
-   }
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+    Signup(Email, Password, Name);
+  };
 
   return (
-    <form onSubmit={handleSubmit} className={styles['signup-form']}>
-    <h2> SignUp </h2>
-     <label>
+    <form onSubmit={HandleSubmit} className={styles["signup-form"]}>
+      <h2> SignUp </h2>
+      <label>
         <span>Name:</span>
-        <input 
-        type="text" 
-        onChange={(e) => setName(e.target.value)}
-        value={Name}
+        <input
+          type="text"
+          onChange={(e) => setName(e.target.value)}
+          value={Name}
         />
-
-     </label>
-    <lable>
-       <span>email:</span>
-       <input
-          type ="email"
+      </label>
+      <lable>
+        <span>Email:</span>
+        <input
+          type="email"
           onChange={(e) => setEmail(e.target.value)}
-          value={email}/>
-    </lable>
-    <label>
-    <span>password:</span>
-    <input
-     type="password"
-     onChange={(e) => setPassword(e.target.value)}
-     value={password}
-     ></input>
-     </label>
-     
-    <button className='btn'>Signup</button>
+          value={Email}
+        />
+      </lable>
+      <label>
+        <span>Password:</span>
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={Password}
+        ></input>
+      </label>
+
+      {!isPending && <button className="btn">Signup</button>}
+      {isPending && (
+        <button className="btn" disabled>
+          loading
+        </button>
+      )}
+      {error && <p>{error}</p>}
     </form>
-  )
+  );
 }

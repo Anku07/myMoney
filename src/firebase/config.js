@@ -3,12 +3,12 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAZgtSTMgTBUaw8_bEBSKsuqaub7kG9mp8",
-  authDomain: "mymoney-9503c.firebaseapp.com",
-  projectId: "mymoney-9503c",
-  storageBucket: "mymoney-9503c.appspot.com",
-  messagingSenderId: "917510122762",
-  appId: "1:917510122762:web:a0f631a3dbc4fb18375ef3",
+  apiKey: "AIzaSyBN2hwt2gtzM7d2U8rSnVfuG5VbIfylnyA",
+  authDomain: "mymoney-676a0.firebaseapp.com",
+  projectId: "mymoney-676a0",
+  storageBucket: "mymoney-676a0.appspot.com",
+  messagingSenderId: "149098756932",
+  appId: "1:149098756932:web:3ee5777f52ef804467b511"
 };
 
 //init firebase
@@ -18,4 +18,7 @@ firebase.initializeApp(firebaseConfig);
 const projectFirestore = firebase.firestore();
 const projectAuth = firebase.auth();
 
-export { projectFirestore, projectAuth };
+//timeatamp
+const timestamp = firebase.firestore.Timestamp
+
+export { projectFirestore, projectAuth, timestamp };
